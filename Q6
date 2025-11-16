@@ -1,0 +1,91 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Viva1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in); //Scanner for user input
+        int[] steps = new int[7]; //Store steps for 7 days into an array
+        
+        //Declare variable
+        int total=0;
+        int max=0;
+        int mostActive=0;
+
+        //Input loop with validation
+        for (int i=0; i<7; i++) {
+            while (true) { //repeat when the input is valid
+                System.out.print("Enter steps for Day " + (i + 1) + ": ");
+                if (sc.hasNextInt()) { //check if the input is an integer that can run
+                    int input = sc.nextInt();
+                    if (input>=0 && input<=50000) { //validate the input is within the range
+                        steps[i] = input; //store input into the array
+                  
+                        break; // exit loop and move to the next input
+                    } 
+                    else {
+                        System.out.println("Invalid input! Please enter a number between 0 and 50000.");
+                    }
+                } 
+                else {
+                    System.out.println("Invalid input! Please enter a number between 0 and 50,000."); //prompt user to enter valid input
+                    sc.next(); // discard invalid input
+                }
+            }
+        }
+
+        // Calculate total steps and find the most active day
+        for (int i=0; i<7; i++) {
+            total += steps[i]; //sum each day steps into total
+            if (steps[i] > max) { //update if the steps of that day higher than max
+                max = steps[i];
+                mostActive = i+1; //store the day number if it is the most active day
+            }
+        }
+
+        // Calculate average
+        double average = total / 7.0;
+
+        // Display all results
+        System.out.println("\nTotal Steps This Week: " + total);
+        System.out.printf("Average Daily Steps: %.2f\n",average);
+        System.out.println("Most Active Day: Day " +mostActive+ " with " +max+ " steps");
+
+        // Displey motivational message
+        if (total>=70000) {
+            System.out.println("Amazing! You're smashing your goals!");
+        } 
+        else if (total>=40000) {
+            System.out.println("Good job! Keep pushing for consistency!");
+        } 
+        else {
+            System.out.println("You can do better, small steps daily make a big difference!");
+        }
+
+        // Random Health Tip using switch
+        Random rand = new Random();
+        int tipNumber = rand.nextInt(5) + 1; // random generate number between 1 to 5
+        String tip = ""; // initialize
+        
+        //Choose health tip based on random number
+        switch (tipNumber) {
+            case 1:
+                tip = "Stay hydrated and stretch after walks!";
+                break;
+            case 2:
+                tip = "Take the stairs instead of the elevator!";
+                break;
+            case 3:
+                tip = "A short walk after meals aids digestion!";
+                break;
+            case 4:
+                tip = "Keep a consistent sleep schedule!";
+                break;
+            case 5:
+                tip = "Incorporate strength exercises twice a week!";
+                break;
+            default:
+                tip = "Remember to stay a4666ctive daily!";
+        }
+        System.out.println("Tip of the Day: " + tip);
+    }
+}
