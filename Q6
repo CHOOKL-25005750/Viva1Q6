@@ -84,7 +84,7 @@ public class Viva1 {
                 tip = "Incorporate strength exercises twice a week!";
                 break;
             default:
-                tip = "Remember to stay a4666ctive daily!";
+                tip = "Remember to stay active daily!";
         }
         System.out.println("Tip of the Day: " + tip);
     }
